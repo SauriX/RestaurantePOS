@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantePOS.context;
+using RestaurantePOS.Helpers;
 using RestaurantePOS.Respository;
 using RestaurantePOS.Respository.IRespository;
 using RestaurantePOS.Services;
@@ -35,8 +36,10 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 
 //Repositorys
 builder.Services.AddScoped<IUserTypeRepository,UserTypeRepository>();
+builder.Services.AddScoped<IConfigurationsRepository,ConfigurationsRepository>();
 //Services
 builder.Services.AddScoped<IUserTypeService,UserTypeService>();
+builder.Services.AddScoped<IConfigurationsService,ConfigurationsService>();
 var app = builder.Build();
 // Ejecución de Seed en el arranque
 using (var scope = app.Services.CreateScope())

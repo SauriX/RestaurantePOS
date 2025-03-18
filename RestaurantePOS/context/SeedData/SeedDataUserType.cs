@@ -9,9 +9,9 @@ namespace RestaurantePOS.context.SeedData
         {
             var UserType = new List<UserType>()
             {
-                new UserType(1, "Administrador"),
-                new UserType(2, "Vendedor"),
-                new UserType(3, "REPARTIDOR" ),
+                new UserType( "Administrador"),
+                new UserType( "Vendedor"),
+                new UserType( "REPARTIDOR" ),
 
             };
 

@@ -4,9 +4,9 @@
     {
 
 
-        public UserType(int Id_UserType, string NameType)
+        public UserType( string NameType)
         {
-            this.Id_UserType = Id_UserType;
+            
             this.NameType = NameType;
         }
         public UserType()
