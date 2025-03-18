@@ -13,23 +13,23 @@ namespace RestaurantePOS.context.SeedData
             return new Configurations()
             {
                 
-                EstablecimientoNombre = "test",
-                Representante = "test",
-                RFC = "test",
-                Telefono = "test",
-                Celular = "test",
-                EnviarSMS = true,
-                Direccion = "test",
-                BkpAlias = "test",
-                AutoBackup = true,
+                EstablecimientoNombre = "",
+                Representante = "",
+                RFC = "",
+                Telefono = "",
+                Celular = "",
+                EnviarSMS = false,
+                Direccion = "",
+                BkpAlias = "",
+                AutoBackup = false,
                 CobroDirecto = false,
                 ImpresoraUnica = false,
-                ImpresoraDomicilio = "test",
-                ImpresoraCuentas = "test",
-                ImpresoraCobros = "test",
-                ImpresoraCortes = "test",
-                AlertaCorte = "test",
-                EmailNotificacion = "test",
+                ImpresoraDomicilio = "",
+                ImpresoraCuentas = "",
+                ImpresoraCobros = "",
+                ImpresoraCortes = "",
+                AlertaCorte = "",
+                EmailNotificacion = "",
             };
         }
     }
