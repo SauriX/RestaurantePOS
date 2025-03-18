@@ -10,7 +10,7 @@
         public const string Disabled = "El usuario no se encuentra activo, contacte al administrador";
         public const string WrongPassword = "Contraseña incorrecta";
         public const string AttemptsFailed = "Se excedió el número de intentos la cuenta ha sido bloqueada, contacte al Administrador";
-        public const string EmailConfigurationIncomplete = "La configuración para el envio de correos esta incompleta, favor de ingresarla";
+        public const string EmailUserTypeIncomplete = "La configuración para el envio de correos esta incompleta, favor de ingresarla";
         public const string EmailFordwardError = "El correo al que se quiere enviar la información no es válido";
         public const string EmailFailed = "Hubo un error al enviar el correo. Revise la configuración";
         public const string InvalidUser = "El usuario no es válido";

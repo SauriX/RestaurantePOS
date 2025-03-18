@@ -10,18 +10,18 @@ EXPOSE 8081
 
 # Esta fase se usa para compilar el proyecto de servicio
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+ARG BUILD_UserType=Release
 WORKDIR /src
 COPY ["RestaurantePOS/RestaurantePOS.csproj", "RestaurantePOS/"]
 RUN dotnet restore "./RestaurantePOS/RestaurantePOS.csproj"
 COPY . .
 WORKDIR "/src/RestaurantePOS"
-RUN dotnet build "./RestaurantePOS.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./RestaurantePOS.csproj" -c $BUILD_UserType -o /app/build
 
 # Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./RestaurantePOS.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+ARG BUILD_UserType=Release
+RUN dotnet publish "./RestaurantePOS.csproj" -c $BUILD_UserType -o /app/publish /p:UseAppHost=false
 
 # Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
 FROM base AS final

@@ -38,7 +38,15 @@ builder.Services.AddScoped<IUserTypeRepository,UserTypeRepository>();
 //Services
 builder.Services.AddScoped<IUserTypeService,UserTypeService>();
 var app = builder.Build();
-
+// Ejecución de Seed en el arranque
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ContextDb>();
+    
+    // Llama al método SeedTables durante el arranque
+    await Seed.SeedTables(context, false);  // Asume `false` si no es necesario actualizar
+}
 app.UseCors("MyPolicy");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

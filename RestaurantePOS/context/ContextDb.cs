@@ -8,7 +8,7 @@ namespace RestaurantePOS.context
 {
     public class ContextDb : DbContext
     {
-        private readonly NoTrackingInterceptor _noTrackingInterceptor;
+ 
         public ContextDb(DbContextOptions<ContextDb> options) : base(options) { }
 
         public DbSet<UserType> UserTypes{ get; set; }  // Agregar modelos aquí
@@ -16,8 +16,6 @@ namespace RestaurantePOS.context
         {
             base.OnConfiguring(optionsBuilder);
 
-            // Agregar el interceptor al contexto
-            optionsBuilder.AddInterceptors(new NoTrackingInterceptor());
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
