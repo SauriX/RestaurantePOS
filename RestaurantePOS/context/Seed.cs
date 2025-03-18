@@ -12,6 +12,13 @@ namespace RestaurantePOS.context
                 context.AddRange(userTypes);
                 await context.SaveChangesAsync();
             }
+
+            //configurations
+            if (!context.Configurations.Any()) { 
+                var configurations = SeedDataConfigurations.GetConfigurations();
+                context.Add(configurations);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

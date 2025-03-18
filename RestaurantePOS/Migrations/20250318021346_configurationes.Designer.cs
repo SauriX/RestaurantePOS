@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantePOS.context;
 
@@ -10,9 +11,11 @@ using RestaurantePOS.context;
 namespace RestaurantePOS.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20250318021346_configurationes")]
+    partial class configurationes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,11 +26,8 @@ namespace RestaurantePOS.Migrations
 
             modelBuilder.Entity("RestaurantePOS.Domain.Configuracion.Configurations", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<bool>("AbrirCaja")
+                        .HasColumnType("bit");
 
                     b.Property<string>("AlertaCorte")
                         .HasColumnType("nvarchar(max)");
@@ -35,14 +35,14 @@ namespace RestaurantePOS.Migrations
                     b.Property<bool>("AutoBackup")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("AutoPrint")
+                        .HasColumnType("bit");
+
                     b.Property<string>("BkpAlias")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Celular")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("CobroDirecto")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
@@ -68,9 +68,6 @@ namespace RestaurantePOS.Migrations
                     b.Property<string>("ImpresoraDomicilio")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("ImpresoraUnica")
-                        .HasColumnType("bit");
-
                     b.Property<string>("RFC")
                         .HasColumnType("nvarchar(max)");
 
@@ -79,8 +76,6 @@ namespace RestaurantePOS.Migrations
 
                     b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
 
                     b.ToTable("Configurations");
                 });

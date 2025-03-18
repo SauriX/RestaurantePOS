@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantePOS.context;
 
@@ -10,9 +11,11 @@ using RestaurantePOS.context;
 namespace RestaurantePOS.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20250318022027_configurationes_id")]
+    partial class configurationes_id
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,10 +32,16 @@ namespace RestaurantePOS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool>("AbrirCaja")
+                        .HasColumnType("bit");
+
                     b.Property<string>("AlertaCorte")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("AutoBackup")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AutoPrint")
                         .HasColumnType("bit");
 
                     b.Property<string>("BkpAlias")
@@ -40,9 +49,6 @@ namespace RestaurantePOS.Migrations
 
                     b.Property<string>("Celular")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("CobroDirecto")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
@@ -67,9 +73,6 @@ namespace RestaurantePOS.Migrations
 
                     b.Property<string>("ImpresoraDomicilio")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("ImpresoraUnica")
-                        .HasColumnType("bit");
 
                     b.Property<string>("RFC")
                         .HasColumnType("nvarchar(max)");

@@ -27,7 +27,7 @@ namespace RestaurantePOS.Services
         public async Task<UserTypeFormDto> GetUserTypeById(int id)
         {
             var UserType = await _userTypeRepository.GetByUsertypeId(id);
-
+                
             return UserType.ToUserTypeFormDto();
         }
 

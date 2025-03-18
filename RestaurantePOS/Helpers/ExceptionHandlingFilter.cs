@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using RestaurantePOS.Helpers;
 
-namespace RestaurantePOS.Respository
+namespace RestaurantePOS.Helpers
 {
     public class ExceptionHandlingFilter : IExceptionFilter
     {
@@ -18,7 +17,7 @@ namespace RestaurantePOS.Respository
             }
             else
             {
-                 var errorMessage = "Error interno del servidor";
+                var errorMessage = "Error interno del servidor";
 
                 // Si la excepción tiene un mensaje interno, lo añadimos al mensaje de error
                 if (context.Exception.InnerException != null)
