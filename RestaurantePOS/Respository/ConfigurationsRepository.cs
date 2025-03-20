@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RestaurantePOS.context;
-using RestaurantePOS.Domain.Configuracion;
+using RestaurantePOS.Domain.Configuration;
 using RestaurantePOS.Respository.IRespository;
 
 namespace RestaurantePOS.Respository

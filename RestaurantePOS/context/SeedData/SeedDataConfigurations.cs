@@ -1,4 +1,4 @@
-﻿using RestaurantePOS.Domain.Configuracion;
+﻿using RestaurantePOS.Domain.Configuration;
 using RestaurantePOS.Domain.Users;
 
 namespace RestaurantePOS.context.SeedData

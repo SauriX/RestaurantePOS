@@ -19,6 +19,13 @@ namespace RestaurantePOS.context
                 context.Add(configurations);
                 await context.SaveChangesAsync();
             }
+
+            //Users
+            if (!context.Users.Any()) {
+                var Users = SeedDataUsers.getUser();
+                context.Add(Users);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

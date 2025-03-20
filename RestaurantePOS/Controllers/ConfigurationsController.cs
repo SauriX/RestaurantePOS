@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestaurantePOS.Domain.Configuracion;
+using RestaurantePOS.Domain.Configuration;
 using RestaurantePOS.Dtos.UserTypeDtos;
 using RestaurantePOS.Services;
 using RestaurantePOS.Services.IServices;

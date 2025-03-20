@@ -1,4 +1,4 @@
-﻿using RestaurantePOS.Domain.Configuracion;
+﻿using RestaurantePOS.Domain.Configuration;
 using RestaurantePOS.Respository.IRespository;
 using RestaurantePOS.Services.IServices;
 

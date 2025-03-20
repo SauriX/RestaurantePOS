@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿
 
-namespace RestaurantePOS.Domain.Configuracion
+namespace RestaurantePOS.Domain.Configuration
 {
     public class Configurations
     {

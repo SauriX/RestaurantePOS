@@ -1,10 +1,15 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
 using RestaurantePOS.context;
 using RestaurantePOS.Helpers;
 using RestaurantePOS.Respository;
 using RestaurantePOS.Respository.IRespository;
 using RestaurantePOS.Services;
 using RestaurantePOS.Services.IServices;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,10 +31,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
-    builder.WithOrigins("*")
+    builder.WithOrigins("http://localhost:8080")
            .AllowAnyMethod()
            .AllowAnyHeader()
-           .WithExposedHeaders("*");
+           .WithExposedHeaders("*")
+           .AllowCredentials();
 
     // U Can Filter Here
 }));
@@ -37,9 +43,52 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 //Repositorys
 builder.Services.AddScoped<IUserTypeRepository,UserTypeRepository>();
 builder.Services.AddScoped<IConfigurationsRepository,ConfigurationsRepository>();
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 //Services
 builder.Services.AddScoped<IUserTypeService,UserTypeService>();
 builder.Services.AddScoped<IConfigurationsService,ConfigurationsService>();
+builder.Services.AddScoped<IUsersServices,UsersService>();
+// Configurar autenticación con JWT y cookies
+var key = Encryption.DeriveKey(builder.Configuration["Secrets:SecretKey"]);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true
+        };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var cookie = context.Request.Cookies["AuthToken"];
+                if (!string.IsNullOrEmpty(cookie))
+                {
+                    context.Token = cookie;
+                }
+                return Task.CompletedTask;
+            }
+        };
+    })
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+    {
+        options.Cookie.HttpOnly = true; // Protege contra XSS
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Solo HTTPS
+        options.Cookie.SameSite = SameSiteMode.Strict; // Protege contra CSRF
+        options.Cookie.Name = "AuthToken"; // Nombre de la cookie
+        options.ExpireTimeSpan = TimeSpan.FromHours(2); // Expiración del token
+        options.LoginPath = "/api/User/login"; // Ruta de login
+    });
+
+
+builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
 var app = builder.Build();
 // Ejecución de Seed en el arranque
 using (var scope = app.Services.CreateScope())
