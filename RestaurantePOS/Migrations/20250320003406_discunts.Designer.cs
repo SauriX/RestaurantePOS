@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantePOS.context;
 
@@ -10,9 +11,11 @@ using RestaurantePOS.context;
 namespace RestaurantePOS.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20250320003406_discunts")]
+    partial class discunts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,31 +23,6 @@ namespace RestaurantePOS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("RestaurantePOS.Domain.Catalogos.Categories", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("DiscuntId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DiscuntId");
-
-                    b.ToTable("Categories");
-                });
 
             modelBuilder.Entity("RestaurantePOS.Domain.Configuration.Configurations", b =>
                 {
@@ -180,16 +158,6 @@ namespace RestaurantePOS.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("RestaurantePOS.Domain.Catalogos.Categories", b =>
-                {
-                    b.HasOne("RestaurantePOS.Domain.Configuration.Discunts", "Discount")
-                        .WithMany()
-                        .HasForeignKey("DiscuntId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Discount");
                 });
 
             modelBuilder.Entity("RestaurantePOS.Domain.Users.Users", b =>

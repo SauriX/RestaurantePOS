@@ -4,18 +4,14 @@ namespace RestaurantePOS.Domain.Users
 {
     public class Users
     {
-        [JsonPropertyName("id")]
-        public int IdUsuario { get; set; }
-        [JsonPropertyName("name")]
-        public string Nombre { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Contrasena { get; set; } = string.Empty;
-        public bool Activo { get; set; } = true;
-        public int UsuarioCreacion { get; set; }
-        public int? UsuarioModificacion { get; set; }
-        public DateTime FechaCreacion { get; set; } = DateTime.Now;
-        public DateTime? FechaModificacion { get; set; }
-
+        
+        public int UserId { get; set; } 
+        public string? UserName { get; set; }
+        public string? UserNickName { get; set; }
+        public string? Password { get; set; }
+        public bool Active { get; set; } = true;
+        public int Id_UserType { get; set; }
+        public UserType UserType { get; set; }
 
     }
 }

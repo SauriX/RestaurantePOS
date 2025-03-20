@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RestaurantePOS.Domain.Configuracion;
+using RestaurantePOS.Domain.Configuration;
 
-namespace RestaurantePOS.context.EntityConfiguration
+namespace RestaurantePOS.context.EntityConfiguration.Configuration
 {
     public class ConfigurationsConfiguration : IEntityTypeConfiguration<Configurations>
     {

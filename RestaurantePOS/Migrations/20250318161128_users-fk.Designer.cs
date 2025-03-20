@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantePOS.context;
 
@@ -10,9 +11,11 @@ using RestaurantePOS.context;
 namespace RestaurantePOS.Migrations
 {
     [DbContext(typeof(ContextDb))]
-    partial class ContextDbModelSnapshot : ModelSnapshot
+    [Migration("20250318161128_users-fk")]
+    partial class usersfk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,32 +24,7 @@ namespace RestaurantePOS.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("RestaurantePOS.Domain.Catalogos.Categories", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("DiscuntId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DiscuntId");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("RestaurantePOS.Domain.Configuration.Configurations", b =>
+            modelBuilder.Entity("RestaurantePOS.Domain.Configuracion.Configurations", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,30 +88,6 @@ namespace RestaurantePOS.Migrations
                     b.ToTable("Configurations");
                 });
 
-            modelBuilder.Entity("RestaurantePOS.Domain.Configuration.Discunts", b =>
-                {
-                    b.Property<int>("DiscuntId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DiscuntId"));
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("DiscuntName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Porcent")
-                        .HasPrecision(0)
-                        .HasColumnType("int");
-
-                    b.HasKey("DiscuntId");
-
-                    b.ToTable("Discunts");
-                });
-
             modelBuilder.Entity("RestaurantePOS.Domain.Users.UserType", b =>
                 {
                     b.Property<int>("Id_UserType")
@@ -159,9 +113,6 @@ namespace RestaurantePOS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Id_UserType")
                         .HasColumnType("int");
 
@@ -180,16 +131,6 @@ namespace RestaurantePOS.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("RestaurantePOS.Domain.Catalogos.Categories", b =>
-                {
-                    b.HasOne("RestaurantePOS.Domain.Configuration.Discunts", "Discount")
-                        .WithMany()
-                        .HasForeignKey("DiscuntId")
-                        .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("Discount");
                 });
 
             modelBuilder.Entity("RestaurantePOS.Domain.Users.Users", b =>
