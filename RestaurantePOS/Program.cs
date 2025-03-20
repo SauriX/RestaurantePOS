@@ -44,10 +44,14 @@ builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 builder.Services.AddScoped<IUserTypeRepository,UserTypeRepository>();
 builder.Services.AddScoped<IConfigurationsRepository,ConfigurationsRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+builder.Services.AddScoped<IDiscuntRepository, DiscuntRepository>();
 //Services
 builder.Services.AddScoped<IUserTypeService,UserTypeService>();
 builder.Services.AddScoped<IConfigurationsService,ConfigurationsService>();
 builder.Services.AddScoped<IUsersServices,UsersService>();
+builder.Services.AddScoped<IDiscuntService, DiscuntService>();
+
+
 // Configurar autenticación con JWT y cookies
 var key = Encryption.DeriveKey(builder.Configuration["Secrets:SecretKey"]);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

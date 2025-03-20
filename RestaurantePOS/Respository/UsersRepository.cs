@@ -44,7 +44,7 @@ namespace RestaurantePOS.Respository
 
         public async Task UpdateUser(Users user)
         {
-            _contextDb.Update( user );
+            _contextDb.Users.Update( user );
            await _contextDb.SaveChangesAsync( );
         }
     }

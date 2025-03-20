@@ -10,6 +10,7 @@ namespace RestaurantePOS.context.EntityConfiguration.Configuration
         {
             builder.HasKey(x => x.DiscuntId);
             builder.Property(x => x.DiscuntId).ValueGeneratedOnAdd();
+            builder.Property(x=>x.Porcent).HasPrecision(0);
         }
     }
 }

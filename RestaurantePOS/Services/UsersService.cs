@@ -118,6 +118,7 @@ namespace RestaurantePOS.Services
         {
             var userModel = await _usersRepository.GetByUserId(user.UserId);
             var isDuplicated = await _usersRepository.IsDuplicate(userModel);
+            
             if (isDuplicated)
             {
                 throw new CustomException(HttpStatusCode.Conflict, "Resgitro Duplicado");

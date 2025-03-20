@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-
+using RestaurantePOS.Domain.Catalogos;
 using RestaurantePOS.Domain.Configuration;
 using RestaurantePOS.Domain.Users;
 using System;
@@ -17,6 +17,7 @@ namespace RestaurantePOS.context
         public DbSet<Configurations> Configurations{ get; set; }
         public DbSet<Users> Users{ get; set; }
         public DbSet<Discunts> Discunts{ get; set; }
+        public DbSet<Categories> Categories{ get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
