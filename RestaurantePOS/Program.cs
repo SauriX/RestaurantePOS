@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using RestaurantePOS.context;
 using RestaurantePOS.Helpers;
@@ -45,11 +46,13 @@ builder.Services.AddScoped<IUserTypeRepository,UserTypeRepository>();
 builder.Services.AddScoped<IConfigurationsRepository,ConfigurationsRepository>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddScoped<IDiscuntRepository, DiscuntRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 //Services
 builder.Services.AddScoped<IUserTypeService,UserTypeService>();
 builder.Services.AddScoped<IConfigurationsService,ConfigurationsService>();
 builder.Services.AddScoped<IUsersServices,UsersService>();
 builder.Services.AddScoped<IDiscuntService, DiscuntService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 // Configurar autenticación con JWT y cookies
